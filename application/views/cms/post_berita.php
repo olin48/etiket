@@ -138,7 +138,7 @@
                             <input type="file" class="form-control-file" id="image" name="image">
                             <input type="hidden" class="form-control-file" id="old_image" name="old_image" value="<?= $mb['image']; ?>">
                             <br />
-                            <img src="<?= base_url('assets/uploads/' . $mb["image"]); ?>" width="300px" height="200px" />
+                            <img src="<?= base_url('assets/uploads/berita/' . $mb["image"]); ?>" width="300px" height="200px" />
                             <br />
                         </div>
                         <div class="form-group">

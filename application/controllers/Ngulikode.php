@@ -24,7 +24,7 @@ class Ngulikode extends CI_Controller
 
     private function _uploadImage()
     {
-        date_default_timezone_set('Asia/Jakarta');
+        date_default_timezone_set('Asia/Karachi');
         $now = date('His');
 
         $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/etiket/assets/uploads/ngulikode/";

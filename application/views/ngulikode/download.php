@@ -144,7 +144,7 @@
                             <input type="file" class="form-control-file" id="image" name="image">
                             <input type="hidden" name="old_image" id="old_image" value="<?= $d['image']; ?>">
                             <br />
-                            <img src="<?= base_url('assets/uploads/' . $d["image"]); ?>" width="300px" height="200px" />
+                            <img src="<?= base_url('assets/uploads/ngulikode/' . $d["image"]); ?>" width="300px" height="200px" />
                             <br />
                         </div>
                     </div>
