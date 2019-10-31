@@ -136,7 +136,7 @@
                             <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
                             <br /><br />
                             <input type="file" class="form-control-file" id="image" name="image">
-                            <input type="hidden" class="form-control-file" id="image" name="image" value="<?= $mb['image']; ?>">
+                            <input type="hidden" class="form-control-file" id="old_image" name="old_image" value="<?= $mb['image']; ?>">
                             <br />
                             <img src="<?= base_url('assets/uploads/' . $mb["image"]); ?>" width="300px" height="200px" />
                             <br />

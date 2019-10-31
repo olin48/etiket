@@ -24,10 +24,10 @@ class Ngulikode extends CI_Controller
 
     private function _uploadImage()
     {
-        date_default_timezone_set('Asia/Karachi');
+        date_default_timezone_set('Asia/Jakarta');
         $now = date('His');
 
-        $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/etiket/assets/uploads/";
+        $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/etiket/assets/uploads/ngulikode/";
         $config['file_name'] = "upload_img_" . $now;
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
@@ -47,7 +47,7 @@ class Ngulikode extends CI_Controller
 
     private function _deleteImage($file)
     {
-        unlink($_SERVER['DOCUMENT_ROOT'] . "/etiket/assets/uploads/" . $file);
+        unlink($_SERVER['DOCUMENT_ROOT'] . "/etiket/assets/uploads/ngulikode/" . $file);
     }
 
     public function download()
