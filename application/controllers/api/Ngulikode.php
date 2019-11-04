@@ -52,6 +52,51 @@ class Ngulikode extends CI_Controller
         }
     }
 
+    public function download_post()
+    {
+        $to = $this->post('to');
+        $subject = $this->post('subject');
+        $link = $this->post('link');
+
+        $config = array(
+            'protocol' => 'smtp', // 'mail', 'sendmail', or 'smtp'
+            'smtp_host' => 'ssl://smtp.googlemail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'ngulikode@gmail.com',
+            'smtp_pass' => 'Ghembel9dki',
+            'mailtype' => 'html', //plaintext 'text' mails or 'html'
+            'charset' => 'iso-8859-1'
+        );
+
+        $this->load->library('email', $config);
+
+        $this->email->set_newline("\r\n");
+
+        $this->email->from('ngulikode@gmail.com', 'Ngulik Kode');
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message("<p>Terima kasih sudah mendownload source code dari Ngulikode, semoga bisa bermanfaat yaa :)<br />
+        <br />
+        Berikut " . $subject . "</p>
+        
+        <p>Link : " . $link . "</p>
+        
+        <p>Best Regards,<br />
+        - Admin</p>");
+
+        if ($this->email->send()) {
+            $this->response([
+                'status' => true,
+                'data' => 'Email berhasil terkirim.'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Gagal kirim email!'
+            ], 400);
+        }
+    }
+
     public function source_put()
     {
 
