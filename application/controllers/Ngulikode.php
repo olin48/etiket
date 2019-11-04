@@ -106,4 +106,28 @@ class Ngulikode extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data source code sukses!</div>');
         redirect('ngulikode/download');
     }
+
+    public function apk_version()
+    {
+        $data['version'] = $this->db->get('ngulikode_version')->result_array();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/breadcumb');
+        $this->load->view('ngulikode/apk_version', $data);
+        $this->load->view('templates/footer');
+        $this->load->view('templates/ckeditor_version');
+    }
+
+    public function edit_version()
+    {
+        $id = $this->input->post('id');
+        $ver_name = $this->input->post('ver_name');
+        $ver_code = $this->input->post('ver_code');
+        $ver_desc = $this->input->post('isi_version_' . $id);
+        $updated_dt = date('Y-m-d H:i:s');
+        $this->load->model('Version_model', 'version');
+        $this->version->edit_version($id, $ver_name, $ver_code, $ver_desc, $updated_dt);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Perubahan data apk version sukses!</div>');
+        redirect('ngulikode/apk_version');
+    }
 }

@@ -21,6 +21,7 @@ class Ngulikode extends CI_Controller
         $this->__resTraitConstruct();
 
         $this->load->model('Download_model', 'download');
+        $this->load->model('Version_model', 'version');
 
         // Configure limits on our controller methods
         // Ensure you have created the 'limits' table and enabled 'limits' within application/config/rest.php
@@ -70,5 +71,14 @@ class Ngulikode extends CI_Controller
                 'message' => 'Update count gagal!'
             ], 400);
         }
+    }
+
+    public function apk_version_get()
+    {
+        $source =  $this->version->getVersion();
+        $this->response([
+            'status' => true,
+            'data' => $source
+        ], 200);
     }
 }
