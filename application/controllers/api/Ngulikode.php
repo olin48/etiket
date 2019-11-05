@@ -48,7 +48,7 @@ class Ngulikode extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Code yang anda masukan salah!'
-            ], 400);
+            ], 204);
         }
     }
 
