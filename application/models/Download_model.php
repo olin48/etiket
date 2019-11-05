@@ -33,9 +33,10 @@ class Download_model extends CI_Model
         }
     }
 
-    public function updateCount($data, $id)
+    public function updateCount($count, $id)
     {
-        $this->db->update('ngulikode_download', $data, ['id' => $id]);
-        return $this->db->affected_rows();
+        $hasil = $this->db->query("UPDATE `ngulikode_download` SET 
+                    `count`='$count' WHERE `id`='$id'");
+        return $hasil;
     }
 }

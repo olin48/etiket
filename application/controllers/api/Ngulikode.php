@@ -101,11 +101,9 @@ class Ngulikode extends CI_Controller
     {
 
         $id = $this->put('id');
-        $data = [
-            'count' => $this->put('count')
-        ];
+        $count = $this->put('count');
 
-        if ($this->download->updateCount($data, $id) > 0) {
+        if ($this->download->updateCount($count, $id) > 0) {
             $this->response([
                 'status' => true,
                 'data' => 'Update jumlah download sukses.'
