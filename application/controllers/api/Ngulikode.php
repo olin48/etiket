@@ -93,7 +93,7 @@ class Ngulikode extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Gagal kirim email!'
-            ], 400);
+            ], 201);
         }
     }
 
