@@ -99,7 +99,6 @@ class Ngulikode extends CI_Controller
 
     public function source_put()
     {
-
         $id = $this->put('id');
         $data = [
             'count' => $this->put('count')
@@ -114,7 +113,7 @@ class Ngulikode extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Update count gagal!'
-            ], 400);
+            ], 201);
         }
     }
 
