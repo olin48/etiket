@@ -65,7 +65,7 @@ class Users extends CI_Controller
             $this->response([
                 'status' => true,
                 'message' => 'Gagal! User sudah tersedia, silahkan login.'
-            ], 400);
+            ], 201);
         }
     }
 
