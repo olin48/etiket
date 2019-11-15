@@ -54,12 +54,12 @@ class Users extends CI_Controller
                 $this->response([
                     'status' => true,
                     'message' => 'Registrasi berhasil, Silahkan login'
-                ], 201);
+                ], 200);
             } else {
                 $this->response([
                     'status' => true,
                     'message' => 'Gagal'
-                ], 400);
+                ], 201);
             }
         } else {
             $this->response([
@@ -82,7 +82,7 @@ class Users extends CI_Controller
                 $this->response([
                     'status' => true,
                     'data' => $data
-                ], 201);
+                ], 200);
             } else {
                 $this->response([
                     'status' => false,
