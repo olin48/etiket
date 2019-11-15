@@ -93,7 +93,7 @@ class Users extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'User tidak ada'
-            ], 400);
+            ], 201);
         }
     }
 }
