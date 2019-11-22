@@ -96,4 +96,21 @@ class Users extends CI_Controller
             ], 201);
         }
     }
+
+    public function berita_get()
+    {
+        $source = $this->mob_users->getBerita();
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada berita!'
+            ], 201);
+        }
+    }
 }

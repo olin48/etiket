@@ -14,4 +14,9 @@ class Mobusers_model extends CI_Model
         $this->db->get_where('mob_users', array('username' => $username))->result_array();
         return $this->db->affected_rows();
     }
+
+    public function getBerita()
+    {
+        return $this->db->get('mob_berita')->result_array();
+    }
 }
