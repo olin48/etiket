@@ -88,27 +88,31 @@
                         <label for="usr">Nama Pertandingan :</label>
                         <input type="text" class="form-control" id="nama_pertandingan" name="nama_pertandingan" required>
                     </div>
-                    <div class="form-group">
-                        <label for="usr">Club Name :</label>
-                        <input type="text" class="form-control" id="club_name_satu" name="club_name_satu" required>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="usr">Club Name :</label>
+                            <input type="text" class="form-control" id="club_name_satu" name="club_name_satu" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="usr">Club Name :</label>
+                            <input type="text" class="form-control" id="club_name_dua" name="club_name_dua" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="usr">Logo Club :</label>
-                        <br />
-                        <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
-                        <br /><br />
-                        <input type="file" class="form-control-file" id="logo_club_satu" name="logo_club_satu" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="usr">Club Name :</label>
-                        <input type="text" class="form-control" id="club_name_dua" name="club_name_dua" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="usr">Logo Club :</label>
-                        <br />
-                        <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
-                        <br /><br />
-                        <input type="file" class="form-control-file" id="logo_club_dua" name="logo_club_dua" required>
+                    <div class="form-group row">
+                        <div class="col-sm-6">
+                            <label for="usr">Logo Club :</label>
+                            <br />
+                            <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
+                            <br /><br />
+                            <input type="file" class="form-control-file" id="logo_club_satu" name="logo_club_satu" required>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="usr">Logo Club :</label>
+                            <br />
+                            <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
+                            <br /><br />
+                            <input type="file" class="form-control-file" id="logo_club_dua" name="logo_club_dua" required>
+                        </div>
                     </div>
                     <br />
                     <div class="form-group row">
@@ -164,33 +168,37 @@
                             <input type="hidden" class="form-control" id="id" name="id" value="<?= $mp['id']; ?>" required>
                             <input type="text" class="form-control" id="nama_pertandingan" name="nama_pertandingan" value="<?= $mp['nama_pertandingan']; ?>" required>
                         </div>
-                        <div class="form-group">
-                            <label for="usr">Club Name :</label>
-                            <input type="text" class="form-control" id="club_name_satu" name="club_name_satu" value="<?= $mp['club_name_satu']; ?>" required>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="usr">Club Name :</label>
+                                <input type="text" class="form-control" id="club_name_satu" name="club_name_satu" value="<?= $mp['club_name_satu']; ?>" required>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="usr">Club Name :</label>
+                                <input type="text" class="form-control" id="club_name_dua" name="club_name_dua" value="<?= $mp['club_name_dua']; ?>" required>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="usr">Logo Club :</label>
-                            <br />
-                            <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
-                            <br /><br />
-                            <input type="hidden" class="form-control-file" id="old_logo_club_satu" name="old_logo_club_satu" value="<?= $mp['club_logo_satu']; ?>">
-                            <input type="file" class="form-control-file" id="logo_club_satu" name="logo_club_satu">
-                            <br /><br />
-                            <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_satu"]); ?>" width="80px" height="80px" />
-                        </div>
-                        <div class="form-group">
-                            <label for="usr">Club Name :</label>
-                            <input type="text" class="form-control" id="club_name_dua" name="club_name_dua" value="<?= $mp['club_name_dua']; ?>" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="usr">Logo Club :</label>
-                            <br />
-                            <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
-                            <br /><br />
-                            <input type="hidden" class="form-control-file" id="old_logo_club_dua" name="old_logo_club_dua" value="<?= $mp['club_logo_dua']; ?>">
-                            <input type="file" class="form-control-file" id="logo_club_dua" name="logo_club_dua">
-                            <br /><br />
-                            <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_dua"]); ?>" width="80px" height="80px" />
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <label for="usr">Logo Club :</label>
+                                <br />
+                                <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
+                                <br /><br />
+                                <input type="hidden" class="form-control-file" id="old_logo_club_satu" name="old_logo_club_satu" value="<?= $mp['club_logo_satu']; ?>">
+                                <input type="file" class="form-control-file" id="logo_club_satu" name="logo_club_satu">
+                                <br /><br />
+                                <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_satu"]); ?>" width="80px" height="80px" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="usr">Logo Club :</label>
+                                <br />
+                                <i>Maksimal file upload 2MB, dengan format .gif, .jpg, .png dan .jpeg</i>
+                                <br /><br />
+                                <input type="hidden" class="form-control-file" id="old_logo_club_dua" name="old_logo_club_dua" value="<?= $mp['club_logo_dua']; ?>">
+                                <input type="file" class="form-control-file" id="logo_club_dua" name="logo_club_dua">
+                                <br /><br />
+                                <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_dua"]); ?>" width="80px" height="80px" />
+                            </div>
                         </div>
                         <br />
                         <div class="form-group row">
