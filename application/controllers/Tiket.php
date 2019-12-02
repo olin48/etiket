@@ -138,7 +138,7 @@ class Tiket extends CI_Controller
         }
         $clubNameDua = $this->input->post('club_name_dua');
         if (!empty($_FILES["logo_club_dua"]["name"])) {
-            $this->_deleteImageClubSatu($this->input->post('old_logo_club_dua'));
+            $this->_deleteImageClubDua($this->input->post('old_logo_club_dua'));
             $logoClubDua = $this->_uploadImageClubDua();
         } else {
             $logoClubDua = $this->input->post('old_logo_club_dua');
