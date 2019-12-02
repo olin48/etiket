@@ -20,16 +20,19 @@
     <!--     <link rel="stylesheet" id="theme" href="css/theme3.css" /> -->
     <link rel="stylesheet" href="<?= base_url('assets/css/theme-nopadding.css'); ?>">
 
-    <link rel="stylesheet" href="<?= base_url('assets/css/dashboard.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/dripicon.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/dashboard.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/style.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/css/dripicon.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/typicons.css'); ?>" />
     <link rel="stylesheet" href="<?= base_url('assets/css/font-awesome.css'); ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css'); ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/js/tip/tooltipster.css'); ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/css/responsive.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/js/tip/tooltipster.css'); ?>" />
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/js/vegas/jquery.vegas.css'); ?>" />
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/js/number-progress-bar/number-pb.css'); ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/js/number-progress-bar/number-pb.css'); ?>" />
 
+    <link rel="stylesheet" href="<?= base_url('assets/js/timepicker/bootstrap-timepicker.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/js/datepicker/datepicker.css'); ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/js/datepicker/clockface.css'); ?>" />
 
     <link href="<?= base_url('assets/js/datatables/dataTables.bootstrap.css'); ?>" rel="stylesheet" type="text/css" />
     <script src="<?= base_url('assets/js/ckeditor/ckeditor.js'); ?>" type="text/javascript"></script>

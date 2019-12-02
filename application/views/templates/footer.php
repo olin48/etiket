@@ -5,7 +5,7 @@
         <p id="spanDate"></p>
         <p id="clock"></p>
     </div>
-    <div class="copyright">Copyright &copy; 2018 <a href="http://ndesaintheme.com/">Pakansari</a> Made with <i class="fontello-heart-filled text-red"></i>
+    <div class="copyright">Copyright &copy; 2019 <a href="http://ndesaintheme.com/">Pakansari</a> Made with <i class="fontello-heart-filled text-red"></i>
     </div>
     <div class="devider-footer"></div>
     <ul>
@@ -55,11 +55,75 @@
 <script src="<?= base_url('assets/js/textEditor/lib/js/wysihtml5-0.3.0.js'); ?>"></script>
 <script src="<?= base_url('assets/js/textEditor/src/bootstrap3-wysihtml5.js'); ?>"></script>
 
+<script type="text/javascript" src="<?= base_url('assets/js/timepicker/bootstrap-timepicker.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/datepicker/bootstrap-datepicker.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/datepicker/clockface.js'); ?>"></script>
+<script type="text/javascript" src="<?= base_url('assets/js/datepicker/bootstrap-datetimepicker.js'); ?>"></script>
+
 <!-- TAB SLIDER -->
 
 <script src="<?= base_url('assets/js/chartist/chartist.min.js'); ?>"></script>
 
 <script>
+    (function($) {
+        $('#id_tiket_event').hide();
+        $('#id_tiket_pertandingan').prop('disabled', true);
+        $('#jenis_tiket').change(function() {
+            var jnsTiket = $(this).children("option:selected").val();
+            if (jnsTiket == "") {
+                $('#id_tiket_event').hide();
+                $('#id_tiket_pertandingan').show();
+                $('#id_tiket_pertandingan').prop('disabled', true);
+            } else if (jnsTiket == "TIKETEVN") {
+                $('#id_tiket_event').show();
+                $('#id_tiket_pertandingan').hide();
+            } else if (jnsTiket == "TIKETPTN") {
+                $('#id_tiket_pertandingan').show();
+                $('#id_tiket_pertandingan').prop('disabled', false);
+                $('#id_tiket_event').hide();
+            }
+        });
+    })(jQuery);
+
+    (function($) {
+        "use strict";
+        $('#start_event').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#end_event').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#tanggal_event').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+        $('#waktu_event').clockface({
+            format: 'HH:mm',
+            trigger: 'manual'
+        });
+    })(jQuery);
+
+    (function($) {
+        "use strict";
+        $('#toggle-btn').click(function(e) {
+            e.stopPropagation();
+            $('#waktu_event').clockface('toggle');
+        });
+    })(jQuery);
+
+    (function($) {
+        "use strict";
+        $('#tanggal_tanding').datepicker({
+            format: 'yyyy-mm-dd'
+        });
+    })(jQuery);
+
+    (function($) {
+        "use strict";
+        $('#toggle-btn').click(function(e) {
+            e.stopPropagation();
+            $('#waktu_tanding').clockface('toggle');
+        });
+    })(jQuery);
     //Weather Icons
     (function($) {
         "use strict";
@@ -120,7 +184,6 @@
             "bAutoWidth": false
         });
     })(jQuery);
-
 
     //Animation Slider
     $(function() {
