@@ -250,7 +250,7 @@ class Tiket extends CI_Controller
         $now = date('His');
 
         $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/assets/uploads/pertandingan/";
-        $config['file_name'] = "upload_img_" . $now;
+        $config['file_name'] = "logo_club_satu_" . $now;
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
         $this->load->library('upload', $config);
@@ -273,12 +273,12 @@ class Tiket extends CI_Controller
         $now = date('His');
 
         $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'] . "/assets/uploads/pertandingan/";
-        $config['file_name'] = "upload_img_" . $now;
+        $config['file_name'] = "logo_club_dua_" . $now;
         $config['allowed_types'] = 'gif|jpg|png|jpeg';
 
         $this->load->library('upload', $config);
 
-        if (!$this->upload->do_upload("logo_club_satu")) {
+        if (!$this->upload->do_upload("logo_club_dua")) {
             $error = $this->upload->display_errors();
             // menampilkan pesan error
             print_r($error);
