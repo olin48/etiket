@@ -176,7 +176,7 @@
                             <input type="hidden" class="form-control-file" id="old_logo_club_satu" name="old_logo_club_satu" value="<?= $mp['club_logo_satu']; ?>">
                             <input type="file" class="form-control-file" id="logo_club_satu" name="logo_club_satu">
                             <br /><br />
-                            <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_dua"]); ?>" width="80px" height="80px" />
+                            <img src="<?= base_url('assets/uploads/pertandingan/' . $mp["club_logo_satu"]); ?>" width="80px" height="80px" />
                         </div>
                         <div class="form-group">
                             <label for="usr">Club Name :</label>
