@@ -113,4 +113,38 @@ class Users extends CI_Controller
             ], 201);
         }
     }
+
+    public function tiket_event_get()
+    {
+        $source = $this->mob_users->getTiketEvent();
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada berita!'
+            ], 201);
+        }
+    }
+
+    public function tiket_pertandingan_get()
+    {
+        $source = $this->mob_users->getTiketPertandingan();
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => [$source]
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada berita!'
+            ], 201);
+        }
+    }
 }
