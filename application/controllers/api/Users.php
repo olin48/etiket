@@ -143,7 +143,25 @@ class Users extends CI_Controller
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'tidak ada berita!'
+                'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function tiket_event_detail_get()
+    {
+        $id = $this->get('id_tiket');
+        $source = $this->mob_users->getTiketEventDetail($id);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada data!'
             ], 201);
         }
     }
@@ -155,12 +173,30 @@ class Users extends CI_Controller
         if ($source) {
             $this->response([
                 'status' => true,
-                'data' => [$source]
+                'data' => $source
             ], 200);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'tidak ada berita!'
+                'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function tiket_pertandingan_detail_get()
+    {
+        $id = $this->get('id_tiket');
+        $source = $this->mob_users->getTiketPertandinganDetail($id);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada data!'
             ], 201);
         }
     }
