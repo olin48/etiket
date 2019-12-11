@@ -15,6 +15,11 @@ class Mobusers_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function getBeritaSlide()
+    {
+        return $this->db->get('mob_berita', 5)->result_array();
+    }
+
     public function getBerita()
     {
         return $this->db->get('mob_berita')->result_array();
