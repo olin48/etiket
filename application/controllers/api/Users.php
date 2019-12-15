@@ -57,13 +57,13 @@ class Users extends CI_Controller
                 ], 200);
             } else {
                 $this->response([
-                    'status' => true,
+                    'status' => false,
                     'message' => 'Gagal'
                 ], 201);
             }
         } else {
             $this->response([
-                'status' => true,
+                'status' => false,
                 'message' => 'Gagal! User sudah tersedia, silahkan login.'
             ], 201);
         }
@@ -187,6 +187,48 @@ class Users extends CI_Controller
     {
         $id = $this->get('id_tiket');
         $source = $this->mob_users->getTiketPertandinganDetail($id);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function order_tiket_post()
+    {
+        $data = [
+            'id_tiket' => $this->post('id_tiket'),
+            'id_kapasitas' => $this->post('id_kapasitas'),
+            'invoice_code' => $this->post('invoice_code'),
+            'status_order' => "1",
+            'qty_order' => $this->post('qty_order'),
+            'total_bayar' => $this->post('total_bayar')
+        ];
+
+        if ($this->mob_users->orderTiket($data) > 0) {
+            $this->response([
+                'status' => true,
+                'message' => 'Order Berhasil!'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Gagal'
+            ], 201);
+        }
+    }
+
+    public function list_order_tiket_get()
+    {
+        $id_user = $this->get('id_user');
+        $source = $this->mob_users->getOrderTiket($id_user);
 
         if ($source) {
             $this->response([

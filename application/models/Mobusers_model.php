@@ -42,6 +42,33 @@ class Mobusers_model extends CI_Model
 
     public function getTiketPertandinganDetail($id)
     {
-        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETPTN", 'id_tiket' => $id))->result_array();;
+        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETPTN", 'id_tiket' => $id))->result_array();
+    }
+
+    public function orderTiket($data)
+    {
+        $this->db->insert('mob_order_tiket', $data);
+        return $this->db->affected_rows();
+    }
+
+    public function getOrderTiket($id_user)
+    {
+        $query = "SELECT `mob_tiket_pertandingan`.`club_name_satu`,
+                         `mob_tiket_pertandingan`.`club_name_dua`, 
+                         `mob_tiket_pertandingan`.`tgl_tanding`, 
+                         `mob_tiket_pertandingan`.`jam_tanding`, 
+                         `mob_order_tiket`.`invoice_code`, 
+                         `mob_order_tiket`.`qty_order`, 
+                         `mob_kapasitas_tiket`.`tipe_tiket`, 
+                         `mob_kapasitas_tiket`.`harga`, 
+                         `mob_order_tiket`.`total_bayar`, 
+                         `mob_order_tiket`.`payment_method` 
+                  FROM `mob_order_tiket` 
+                  JOIN `mob_tiket_pertandingan` 
+                  ON `mob_order_tiket`.`id_tiket` = `mob_tiket_pertandingan`.`id` 
+                  JOIN `mob_kapasitas_tiket` 
+                  ON `mob_order_tiket`.`id_kapasitas` = `mob_kapasitas_tiket`.`id`
+                  WHERE `mob_order_tiket`.`id_user` = $id_user";
+        return $this->db->query($query)->result_array();
     }
 }
