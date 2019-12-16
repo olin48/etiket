@@ -206,6 +206,7 @@ class Users extends CI_Controller
         $data = [
             'id_tiket' => $this->post('id_tiket'),
             'id_kapasitas' => $this->post('id_kapasitas'),
+            'id_user' => $this->post('id_user'),
             'invoice_code' => $this->post('invoice_code'),
             'status_order' => "1",
             'qty_order' => $this->post('qty_order'),
