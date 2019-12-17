@@ -282,4 +282,25 @@ class Users extends CI_Controller
             ], 201);
         }
     }
+
+    public function data_order_get()
+    {
+        $id_tiket = $this->put('id_tiket');
+        $id_kapasitas = $this->put('id_kapasitas');
+        $id_user = $this->put('id_user');
+        $invoice_code = $this->put('invoice_code');
+        $source = $this->mob_users->getDataOrder($id_tiket, $id_kapasitas, $id_user, $invoice_code);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Gagal menampilkan data!'
+            ], 201);
+        }
+    }
 }

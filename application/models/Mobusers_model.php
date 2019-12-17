@@ -83,4 +83,9 @@ class Mobusers_model extends CI_Model
         $hasil = $this->db->query("UPDATE `mob_order_tiket` SET `status_order`='$status', `payment_method`='$method' WHERE `id`='$id'");
         return $hasil;
     }
+
+    public function getDataOrder($id_tiket, $id_kapasitas, $id_user, $invoice_code)
+    {
+        return $this->db->get_where('mob_order_tiket', array('id_tiket' => $id_tiket, 'id_kapasitas' => $id_kapasitas, 'id_user' => $id_user, 'invoice_code' => $invoice_code))->result_array();
+    }
 }
