@@ -51,6 +51,12 @@ class Mobusers_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function getCountKapasitas($id, $kapasitas)
+    {
+        $hasil = $this->db->query("UPDATE `mob_kapasitas_tiket` SET `kapasitas`='$kapasitas' WHERE `id`='$id'");
+        return $hasil;
+    }
+
     public function getOrderTiket($id_user)
     {
         $query = "SELECT `mob_tiket_pertandingan`.`club_name_satu`,
@@ -70,5 +76,11 @@ class Mobusers_model extends CI_Model
                   ON `mob_order_tiket`.`id_kapasitas` = `mob_kapasitas_tiket`.`id`
                   WHERE `mob_order_tiket`.`id_user` = $id_user";
         return $this->db->query($query)->result_array();
+    }
+
+    public function getStatusBayar($id, $status, $method)
+    {
+        $hasil = $this->db->query("UPDATE `mob_order_tiket` SET `status_order`='$status', `payment_method`='$method' WHERE `id`='$id'");
+        return $hasil;
     }
 }

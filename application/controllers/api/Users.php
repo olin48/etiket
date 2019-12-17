@@ -226,6 +226,25 @@ class Users extends CI_Controller
         }
     }
 
+    public function count_kapasitas_put()
+    {
+        $id = $this->put('id');
+        $kapasitas = $this->put('kapasitas');
+        $source = $this->mob_users->getCountKapasitas($id, $kapasitas);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => 'Update berhasil!'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Gagal update!'
+            ], 201);
+        }
+    }
+
     public function list_order_tiket_get()
     {
         $id_user = $this->get('id_user');
@@ -240,6 +259,26 @@ class Users extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function status_bayar_put()
+    {
+        $id = $this->put('id');
+        $status = $this->put('status_order');
+        $method = $this->put('payment_method');
+        $source = $this->mob_users->getStatusBayar($id, $status, $method);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => 'Update berhasil!'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Gagal update!'
             ], 201);
         }
     }
