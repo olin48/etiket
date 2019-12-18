@@ -208,7 +208,7 @@ class Users extends CI_Controller
             'id_kapasitas' => $this->post('id_kapasitas'),
             'id_user' => $this->post('id_user'),
             'invoice_code' => $this->post('invoice_code'),
-            'status_order' => "1",
+            'status_order' => "0",
             'qty_order' => $this->post('qty_order'),
             'total_bayar' => $this->post('total_bayar')
         ];
