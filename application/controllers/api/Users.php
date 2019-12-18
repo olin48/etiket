@@ -285,11 +285,8 @@ class Users extends CI_Controller
 
     public function data_order_get()
     {
-        $id_tiket = $this->get('id_tiket');
-        $id_kapasitas = $this->get('id_kapasitas');
-        $id_user = $this->get('id_user');
         $invoice_code = $this->get('invoice_code');
-        $source = $this->mob_users->getDataOrder($id_tiket, $id_kapasitas, $id_user, $invoice_code);
+        $source = $this->mob_users->getDataOrder($invoice_code);
 
         if ($source) {
             $this->response([
