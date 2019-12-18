@@ -217,7 +217,7 @@ class Users extends CI_Controller
             $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
             $this->response([
                 'status' => true,
-                'message' => $source
+                'data' => $source
             ], 200);
         } else {
             $this->response([
