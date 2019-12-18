@@ -73,7 +73,8 @@ class Mobusers_model extends CI_Model
                          `mob_kapasitas_tiket`.`tipe_tiket`, 
                          `mob_kapasitas_tiket`.`harga`, 
                          `mob_order_tiket`.`total_bayar`, 
-                         `mob_order_tiket`.`payment_method` 
+                         `mob_order_tiket`.`payment_method`,
+                         `mob_order_tiket`.`status_order`
                   FROM `mob_order_tiket` 
                   JOIN `mob_tiket_pertandingan` 
                   ON `mob_order_tiket`.`id_tiket` = `mob_tiket_pertandingan`.`id` 
