@@ -214,9 +214,10 @@ class Users extends CI_Controller
         ];
 
         if ($this->mob_users->orderTiket($data) > 0) {
+            $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
             $this->response([
                 'status' => true,
-                'message' => 'Order Berhasil!'
+                'message' => $source
             ], 200);
         } else {
             $this->response([
@@ -279,24 +280,6 @@ class Users extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Gagal update!'
-            ], 201);
-        }
-    }
-
-    public function data_order_get()
-    {
-        $invoice_code = $this->get('invoice_code');
-        $source = $this->mob_users->getDataOrder($invoice_code);
-
-        if ($source) {
-            $this->response([
-                'status' => true,
-                'data' => $source
-            ], 200);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'Gagal menampilkan data!'
             ], 201);
         }
     }

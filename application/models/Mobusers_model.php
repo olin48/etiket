@@ -51,6 +51,11 @@ class Mobusers_model extends CI_Model
         return $this->db->affected_rows();
     }
 
+    public function getDataOrder($invoice_code)
+    {
+        return $this->db->get_where('mob_order_tiket', array('invoice_code' => $invoice_code))->result_array();
+    }
+
     public function getCountKapasitas($id, $kapasitas)
     {
         $hasil = $this->db->query("UPDATE `mob_kapasitas_tiket` SET `kapasitas`='$kapasitas' WHERE `id`='$id'");
@@ -82,10 +87,5 @@ class Mobusers_model extends CI_Model
     {
         $hasil = $this->db->query("UPDATE `mob_order_tiket` SET `status_order`='$status', `payment_method`='$method' WHERE `id`='$id'");
         return $hasil;
-    }
-
-    public function getDataOrder($invoice_code)
-    {
-        return $this->db->get_where('mob_order_tiket', array('invoice_code' => $invoice_code))->result_array();
     }
 }
