@@ -72,6 +72,7 @@ class Mobusers_model extends CI_Model
                          `mob_order_tiket`.`qty_order`, 
                          `mob_kapasitas_tiket`.`tipe_tiket`, 
                          `mob_kapasitas_tiket`.`harga`, 
+                         `mob_order_tiket`.`id`,
                          `mob_order_tiket`.`total_bayar`, 
                          `mob_order_tiket`.`payment_method`,
                          `mob_order_tiket`.`status_order`
