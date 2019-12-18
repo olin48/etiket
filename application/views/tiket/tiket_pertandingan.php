@@ -237,10 +237,11 @@
                     <?php echo form_close(); ?>
                 </div>
             </div>
-        <?php } ?>
-
         </div>
-        <!-- #/paper bg -->
+    <?php } ?>
+
+</div>
+<!-- #/paper bg -->
 </div>
 <!-- ./wrap-sidebar-content -->
 
