@@ -213,16 +213,31 @@ class Users extends CI_Controller
             'total_bayar' => $this->post('total_bayar')
         ];
 
-        if ($this->mob_users->orderTiket($data) > 0) {
-            $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
-            $this->response([
-                'status' => true,
-                'data' => $source
-            ], 200);
+        $check = $this->db->get_where(
+            'mob_order_tiket',
+            array(
+                'invoice_code' => $this->post('invoice_code')
+            )
+        )->result_array();
+
+        $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
+
+        if ($check == null) {
+            if ($this->mob_users->orderTiket($data) > 0) {
+                $this->response([
+                    'status' => true,
+                    'data' => $source
+                ], 200);
+            } else {
+                $this->response([
+                    'status' => false,
+                    'message' => 'Gagal'
+                ], 201);
+            }
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Gagal'
+                'message' => 'Gagal, Terdapat duplikasi data order!'
             ], 201);
         }
     }
