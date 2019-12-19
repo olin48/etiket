@@ -220,9 +220,8 @@ class Users extends CI_Controller
             )
         )->result_array();
 
-        $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
-
         if ($check == null) {
+            $source = $this->mob_users->getDataOrder($this->post('invoice_code'));
             if ($this->mob_users->orderTiket($data) > 0) {
                 $this->response([
                     'status' => true,
