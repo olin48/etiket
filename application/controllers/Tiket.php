@@ -210,7 +210,9 @@ class Tiket extends CI_Controller
     {
         $this->tiket->edit_status_bayar($id);
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
-        $codeQR = $generateCode . '-' . random_string('numeric', 5);
+        for ($i = 0; $i < $qty_order; $i++) {
+            $codeQR = $generateCode . '-' . random_string('numeric', 5);
+        }
         $this->generate_qr($id, $codeQR);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
         redirect('tiket/order_tiket');
@@ -223,7 +225,7 @@ class Tiket extends CI_Controller
         $config['cacheable']    = true; //boolean, the default is true
         $config['cachedir']     = './assets/'; //string, the default is application/cache/
         $config['errorlog']     = './assets/'; //string, the default is application/logs/
-        $config['imagedir']     = './assets/generate/'; //direktori penyimpanan qr code
+        $config['imagedir']     = './assets/uploads/generate/'; //direktori penyimpanan qr code
         $config['quality']      = true; //boolean, the default is true
         $config['size']         = '1024'; //interger, the default is 1024
         $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
