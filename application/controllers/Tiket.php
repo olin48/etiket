@@ -7,8 +7,10 @@ class Tiket extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->library('ciqrcode');
         $this->load->model('Tiket_model', 'tiket');
         $this->load->library('session');
+        $this->load->helper('string');
         is_logged_in();
     }
 
@@ -204,12 +206,45 @@ class Tiket extends CI_Controller
         // $this->load->view('templates/js_kapasitas');
     }
 
-    public function update_status_bayar($id, $id_kapasitas, $qty_order, $kapasitas)
+    public function update_status_bayar($id, $id_kapasitas, $qty_order, $kapasitas, $generateCode)
     {
         $this->tiket->edit_status_bayar($id);
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
+        $codeQR = $generateCode . '-' . random_string('numeric', 5);
+        $this->generate_qr($id, $codeQR);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
         redirect('tiket/order_tiket');
+    }
+
+    function generate_qr($id_order, $codeQR)
+    {
+        $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+
+        $config['cacheable']    = true; //boolean, the default is true
+        $config['cachedir']     = './assets/'; //string, the default is application/cache/
+        $config['errorlog']     = './assets/'; //string, the default is application/logs/
+        $config['imagedir']     = './assets/generate/'; //direktori penyimpanan qr code
+        $config['quality']      = true; //boolean, the default is true
+        $config['size']         = '1024'; //interger, the default is 1024
+        $config['black']        = array(224, 255, 255); // array, default is array(255,255,255)
+        $config['white']        = array(70, 130, 180); // array, default is array(0,0,0)
+        $this->ciqrcode->initialize($config);
+
+        $image_name = $codeQR . '.png'; //buat name dari qr code sesuai dengan nim
+
+        $params['data'] = $codeQR; //data yang akan di jadikan QR CODE
+        $params['level'] = 'H'; //H=High
+        $params['size'] = 10;
+        $params['savename'] = FCPATH . $config['imagedir'] . $image_name; //simpan image QR CODE ke folder assets/images/
+        $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+        $data = [
+            'id_order' => $id_order,
+            'qr_code' => $codeQR,
+            'qr_image' => $image_name
+        ];
+        $this->db->insert('mob_generate_qr', $data);
+        // redirect('mahasiswa'); //redirect ke mahasiswa usai simpan data
     }
 
     public function cancle_status_bayar($id)

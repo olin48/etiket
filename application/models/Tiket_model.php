@@ -75,6 +75,7 @@ class Tiket_model extends CI_Model
         `kapasitas_tiket`.`kapasitas`,
         `mob_users`.`name`,
         `order_tiket`.`id`,
+        `order_tiket`.`jenis_tiket`,
         `order_tiket`.`invoice_code`,
         `order_tiket`.`status_order`,
         `order_tiket`.`qty_order`,

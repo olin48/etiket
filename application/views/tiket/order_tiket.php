@@ -59,7 +59,7 @@
                                             echo "<td align='center'><span class='label label-danger'>Dibatalkan</span></td>";
                                         } ?>
                                     <td align="center" width="8%">
-                                        <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $ot['id'] . '/' . $ot['id_kapasitas'] . '/' . $ot['qty_order'] . '/' . $ot['kapasitas']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
+                                        <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $ot['id'] . '/' . $ot['id_kapasitas'] . '/' . $ot['qty_order'] . '/' . $ot['kapasitas'] . '/' . $ot['jenis_tiket'] . '-' . $ot['id'] . '-' . $ot['tipe_tiket']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
                                             <?php if ($ot['status_order'] == 1) {
                                                     echo "<i class='fa fa-check' style='color:green'></i>";
                                                 } else if ($ot['status_order'] == 3) {
