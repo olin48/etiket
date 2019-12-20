@@ -212,8 +212,8 @@ class Tiket extends CI_Controller
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
         for ($i = 0; $i < $qty_order; $i++) {
             $codeQR = $generateCode . '-' . random_string('numeric', 5);
+            $this->generate_qr($id, $codeQR);
         }
-        $this->generate_qr($id, $codeQR);
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
         redirect('tiket/order_tiket');
     }
