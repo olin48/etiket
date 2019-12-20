@@ -67,4 +67,58 @@ class Tiket_model extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
+
+    function orderTiketPertandingan()
+    {
+        $query = "SELECT if(`kapasitas_tiket`.`jenis_tiket_cd` = 'TIKETPTN', 'Tiket Pertandingan', 'Tiket Event') AS jenis_tiket,
+        `kapasitas_tiket`.`tipe_tiket`,
+        `kapasitas_tiket`.`kapasitas`,
+        `mob_users`.`name`,
+        `order_tiket`.`id`,
+        `order_tiket`.`invoice_code`,
+        `order_tiket`.`status_order`,
+        `order_tiket`.`qty_order`,
+        `order_tiket`.`total_bayar`,
+        `order_tiket`.`payment_method`,
+        `order_tiket`.`id_kapasitas`,
+        `pertandingan`.`tgl_tanding`,
+        `pertandingan`.`jam_tanding`
+        FROM `mob_kapasitas_tiket` AS `kapasitas_tiket`
+        JOIN `mob_order_tiket` AS `order_tiket`
+        ON `kapasitas_tiket`.`id` = `order_tiket`.`id_kapasitas`
+        JOIN `mob_users`
+        ON `order_tiket`.`id_user` = `mob_users`.`id`
+        JOIN `mob_tiket_pertandingan` AS `pertandingan`
+        ON `order_tiket`.`id_tiket` = `pertandingan`.`id` AND `order_tiket`.`tipe_tiket` = `pertandingan`.`tipe_tiket`
+        WHERE `order_tiket`.`status_order` = '1' OR `order_tiket`.`status_order` = '2' OR `order_tiket`.`status_order` = '3'";
+        return $this->db->query($query)->result_array();
+    }
+
+    function edit_status_bayar($id)
+    {
+        $hasil = $this->db->query(
+            "UPDATE `mob_order_tiket` SET 
+                `status_order`='2' WHERE `id`='$id'"
+        );
+        return $hasil;
+    }
+
+    function cancle_status_bayar($id)
+    {
+        $hasil = $this->db->query(
+            "UPDATE `mob_order_tiket` SET 
+                `status_order`='3' WHERE `id`='$id'"
+        );
+        return $hasil;
+    }
+
+    function edit_quantity($id_kapasitas, $qty_order, $kapasitas)
+    {
+        $updateKapasitas = $kapasitas - $qty_order;
+        $hasil = $this->db->query(
+            "UPDATE `mob_kapasitas_tiket` SET 
+                `kapasitas`= '$updateKapasitas' WHERE `id`='$id_kapasitas'"
+        );
+        return $hasil;
+    }
 }

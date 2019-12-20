@@ -193,6 +193,32 @@ class Tiket extends CI_Controller
         }
     }
 
+    public function order_tiket()
+    {
+        $data['order_tiket'] = $this->tiket->orderTiketPertandingan();
+        $this->load->view('templates/header');
+        $this->load->view('templates/sidebar');
+        $this->load->view('templates/breadcumb');
+        $this->load->view('tiket/order_tiket', $data);
+        $this->load->view('templates/footer');
+        // $this->load->view('templates/js_kapasitas');
+    }
+
+    public function update_status_bayar($id, $id_kapasitas, $qty_order, $kapasitas)
+    {
+        $this->tiket->edit_status_bayar($id);
+        $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
+        redirect('tiket/order_tiket');
+    }
+
+    public function cancle_status_bayar($id)
+    {
+        $this->tiket->cancle_status_bayar($id);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
+        redirect('tiket/order_tiket');
+    }
+
     public function edit_kapasitas()
     {
         $id = $this->input->post('id');

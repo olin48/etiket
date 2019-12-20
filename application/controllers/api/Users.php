@@ -288,12 +288,12 @@ class Users extends CI_Controller
         if ($source) {
             $this->response([
                 'status' => true,
-                'data' => 'Update berhasil!'
+                'data' => 'Pembayaran berhasil, admin akan segera memprosesnya!'
             ], 200);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Gagal update!'
+                'message' => 'Pembayaran gagal!'
             ], 201);
         }
     }
