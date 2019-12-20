@@ -89,7 +89,7 @@ class Tiket_model extends CI_Model
         JOIN `mob_users`
         ON `order_tiket`.`id_user` = `mob_users`.`id`
         JOIN `mob_tiket_pertandingan` AS `pertandingan`
-        ON `order_tiket`.`id_tiket` = `pertandingan`.`id` AND `order_tiket`.`tipe_tiket` = `pertandingan`.`tipe_tiket`
+        ON `order_tiket`.`id_tiket` = `pertandingan`.`id` AND `order_tiket`.`jenis_tiket` = `pertandingan`.`jenis_tiket`
         WHERE `order_tiket`.`status_order` = '1' OR `order_tiket`.`status_order` = '2' OR `order_tiket`.`status_order` = '3'";
         return $this->db->query($query)->result_array();
     }

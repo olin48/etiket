@@ -204,7 +204,7 @@ class Users extends CI_Controller
     public function order_tiket_post()
     {
         $data = [
-            'jenis_tiket_cd' => $this->post('jenis_tiket_cd'),
+            'jenis_tiket' => $this->post('jenis_tiket'),
             'id_tiket' => $this->post('id_tiket'),
             'id_kapasitas' => $this->post('id_kapasitas'),
             'id_user' => $this->post('id_user'),
