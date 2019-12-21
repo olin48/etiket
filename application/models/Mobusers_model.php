@@ -87,6 +87,31 @@ class Mobusers_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
+    public function getOrderTiketDetail($id_order)
+    {
+        $query = "SELECT IF(`mob_order_tiket`.`jenis_tiket` = 'TIKETPTN', 'Tiket Pertandingan', 'Tiket Event') AS `jenis_tiket`,
+                         `mob_generate_qr`.`id`,
+                         `mob_generate_qr`.`qr_code`,
+                         `mob_generate_qr`.`qr_image`,
+                         `mob_generate_qr`.`status_scan`,
+                         `mob_tiket_pertandingan`.`nama_pertandingan`,
+                         `mob_tiket_pertandingan`.`club_name_satu`,
+                         `mob_tiket_pertandingan`.`club_name_dua`
+                FROM `mob_order_tiket` 
+                JOIN `mob_generate_qr` 
+                ON `mob_order_tiket`.`id` = `mob_generate_qr`.`id_order`
+                JOIN `mob_tiket_pertandingan`
+                ON `mob_order_tiket`.`id_tiket` = `mob_tiket_pertandingan`.`id`
+                WHERE `mob_generate_qr`.`id_order` = $id_order";
+        return $this->db->query($query)->result_array();
+    }
+
+    public function updateOrderTiketDetail($status_scan, $id)
+    {
+        $hasil = $this->db->query("UPDATE `mob_generate_qr` SET `status_scan`='$status_scan' WHERE `id`='$id'");
+        return $hasil;
+    }
+
     public function getStatusBayar($id, $status, $method)
     {
         $hasil = $this->db->query("UPDATE `mob_order_tiket` SET `status_order`='$status', `payment_method`='$method' WHERE `id`='$id'");

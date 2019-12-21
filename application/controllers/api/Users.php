@@ -279,6 +279,42 @@ class Users extends CI_Controller
         }
     }
 
+    public function list_order_tiket_detail_get()
+    {
+        $id_order = $this->get('id_order');
+        $source = $this->mob_users->getOrderTiketDetail($id_order);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function status_scan_put()
+    {
+        $id = $this->put('id');
+        $status = $this->put('status_scan');
+        $source = $this->mob_users->updateOrderTiketDetail()($id, $status);
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => 'Scan barcode sukses!'
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Scan barcode gagal!'
+            ], 201);
+        }
+    }
+
     public function status_bayar_put()
     {
         $id = $this->put('id');
