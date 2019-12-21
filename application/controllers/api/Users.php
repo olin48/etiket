@@ -301,7 +301,7 @@ class Users extends CI_Controller
     {
         $id = $this->put('id');
         $status = $this->put('status_scan');
-        $source = $this->mob_users->updateOrderTiketDetail()($id, $status);
+        $source = $this->mob_users->updateOrderTiketDetail($id, $status);
         if ($source) {
             $this->response([
                 'status' => true,
