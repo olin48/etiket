@@ -151,6 +151,14 @@
     })(jQuery);
 
     (function($) {
+        $('#dataMobAdmins').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
         $('#dataBerita').dataTable({
             "bPaginate": true,
             "bLengthChange": true,

@@ -37,6 +37,35 @@ class Cms_model extends CI_Model
         $this->db->delete($table);
     }
 
+    function edit_mob_admins($id, $name, $username, $email, $password, $phone, $status)
+    {
+        $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        if ($password == null) {
+            $hasil = $this->db->query("UPDATE `mob_admins` SET 
+                                  `name`='$name',
+                                  `username`='$username',
+                                  `email`='$email',
+                                  `phone`='$phone',
+                                  `is_active`='$status' WHERE `id`='$id'");
+            return $hasil;
+        } else {
+            $hasil = $this->db->query("UPDATE `mob_admins` SET 
+                                  `name`='$name',
+                                  `username`='$username',
+                                  `email`='$email',
+                                  `password`='$passwordHash',
+                                  `phone`='$phone',
+                                  `is_active`='$status' WHERE `id`='$id'");
+            return $hasil;
+        }
+    }
+
+    function delete_mob_admins($where, $table)
+    {
+        $this->db->where($where);
+        $this->db->delete($table);
+    }
+
     function edit_berita($id, $judul, $isi, $image, $link)
     {
         $hasil = $this->db->query("UPDATE `mob_berita` SET 

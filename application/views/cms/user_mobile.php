@@ -18,7 +18,6 @@
                 <!-- /.box-header -->
                 <div class="box-body table-responsive">
                     <?= $this->session->flashdata('message'); ?>
-
                     <table id="data" class="table table-bordered table-striped">
                         <thead>
                             <tr>
@@ -52,7 +51,7 @@
                                             <i class="fa fa-edit" style="color:green"></i>
                                         </button>
                                         &nbsp;
-                                        <a title="Delete" href="delete_users/$mu[id]" onclick="return confirm('Anda yakin ingin menghapus data ini?')" type="button" class="btn-link d-delete">
+                                        <a title="Delete" href="delete_mob_users/<?= $mu['id']; ?>" onclick="return confirm('Anda yakin ingin menghapus data ini?')" type="button" class="btn-link d-delete">
                                             <i class="fontello-trash-2" style="color:red"></i>
                                         </a>
                                     </td>

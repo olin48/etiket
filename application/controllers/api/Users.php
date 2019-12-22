@@ -97,6 +97,34 @@ class Users extends CI_Controller
         }
     }
 
+    public function login_admin_post()
+    {
+        $username = $this->post('username');
+        $password = $this->post('password');
+
+        $user = $this->db->get_where('mob_admins', ['username' => $username])->row_array();
+
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $data = $this->db->get_where('mob_admins', array('username' => $username))->result_array();
+                $this->response([
+                    'status' => true,
+                    'data' => $data
+                ], 200);
+            } else {
+                $this->response([
+                    'status' => false,
+                    'message' => 'Password salah!'
+                ], 201);
+            }
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'User tidak ada'
+            ], 201);
+        }
+    }
+
     public function berita_slide_get()
     {
         $source = $this->mob_users->getBeritaSlide();

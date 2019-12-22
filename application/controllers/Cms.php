@@ -29,7 +29,7 @@ class Cms extends CI_Controller
         $name = $this->input->post('name');
         $username = $this->input->post('username');
         $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $password = password_hash($this->input->post('password'), PASSWORD_DEFAULT);
         $phone = $this->input->post('phone');
         $status = $this->input->post('status_id');
         $this->cms->edit_mob_users($id, $name, $username, $email, $password, $phone, $status);
@@ -40,9 +40,58 @@ class Cms extends CI_Controller
     public function delete_mob_users($id)
     {
         $where = array('id' => $id);
-        $this->cms->delete_mob_users($where, 'mob_mobile');
+        $this->cms->delete_mob_users($where, 'mob_users');
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data users sukses!</div>');
         redirect('cms/mob_users');
+    }
+
+    public function mob_admins()
+    {
+        $this->form_validation->set_rules('name', 'Name', 'required|trim');
+        if ($this->form_validation->run() == false) {
+            $data['mobadmin'] = $this->db->get('mob_admins')->result_array();
+            $data['role'] = $this->db->get('cms_user_role')->result_array();
+            $this->load->view('templates/header');
+            $this->load->view('templates/sidebar');
+            $this->load->view('templates/breadcumb');
+            $this->load->view('cms/admin_mobile', $data);
+            $this->load->view('templates/footer');
+        } else {
+            $data = [
+                'name' => $this->input->post('name'),
+                'username' => $this->input->post('username'),
+                'email' => $this->input->post('email'),
+                'password' => password_hash($this->input->post('password'), PASSWORD_DEFAULT),
+                'phone' => $this->input->post('phone'),
+                'is_active' => $this->input->post('status_id'),
+            ];
+
+            $this->db->insert('mob_admins', $data);
+            $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Penambahan data admin baru sukses!</div>');
+            redirect('cms/mob_admins');
+        }
+    }
+
+    public function edit_mob_admins()
+    {
+        $id = $this->input->post('id');
+        $name = $this->input->post('name');
+        $username = $this->input->post('username');
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+        $phone = $this->input->post('phone');
+        $status = $this->input->post('status_id');
+        $this->cms->edit_mob_admins($id, $name, $username, $email, $password, $phone, $status);
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Perubahan data admin sukses!</div>');
+        redirect('cms/mob_admins');
+    }
+
+    public function delete_mob_admins($id)
+    {
+        $where = array('id' => $id);
+        $this->cms->delete_mob_admins($where, 'mob_admins');
+        $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data admins sukses!</div>');
+        redirect('cms/mob_admins');
     }
 
     private function _uploadImage()
