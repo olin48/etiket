@@ -331,7 +331,7 @@ class Users extends CI_Controller
         $check = $this->db->get_where('mob_generate_qr', array('qr_code' => $qr_code))->result_array();
         if ($check != null) {
             $checkStatus = $this->db->get_where('mob_generate_qr', array('qr_code' => $qr_code, 'status_scan' => '1'))->result_array();
-            if ($checkStatus != null) {
+            if ($checkStatus == null) {
                 $source = $this->mob_users->updateOrderTiketDetail($qr_code);
                 if ($source) {
                     $this->response([
