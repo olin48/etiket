@@ -106,9 +106,9 @@ class Mobusers_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function updateOrderTiketDetail($status_scan, $id)
+    public function updateOrderTiketDetail($qr_code)
     {
-        $hasil = $this->db->query("UPDATE `mob_generate_qr` SET `status_scan`='$status_scan' WHERE `id`='$id'");
+        $hasil = $this->db->query("UPDATE `mob_generate_qr` SET `status_scan`='1' WHERE `qr_code`='$qr_code'");
         return $hasil;
     }
 
