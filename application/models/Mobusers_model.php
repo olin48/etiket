@@ -108,6 +108,8 @@ class Mobusers_model extends CI_Model
 
     public function updateOrderTiketDetail($qr_code)
     {
+        // var_dump($qr_code);
+        // die;
         $hasil = $this->db->query("UPDATE `mob_generate_qr` SET `status_scan`='1' WHERE `qr_code`='$qr_code'");
         return $hasil;
     }

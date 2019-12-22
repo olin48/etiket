@@ -328,22 +328,26 @@ class Users extends CI_Controller
     public function status_scan_put()
     {
         $qr_code = $this->put('qr_code');
-        $check = $this->db->get_where(
-            'mob_generate_qr',
-            array('qr_code' => $qr_code)
-        )->result_array();
-
+        $check = $this->db->get_where('mob_generate_qr', array('qr_code' => $qr_code))->result_array();
         if ($check != null) {
-            $source = $this->mob_users->updateOrderTiketDetail($qr_code);
-            if ($source) {
-                $this->response([
-                    'status' => true,
-                    'data' => 'Scan barcode sukses!'
-                ], 200);
+            $checkStatus = $this->db->get_where('mob_generate_qr', array('qr_code' => $qr_code, 'status_scan' => '1'))->result_array();
+            if ($checkStatus != null) {
+                $source = $this->mob_users->updateOrderTiketDetail($qr_code);
+                if ($source) {
+                    $this->response([
+                        'status' => true,
+                        'data' => 'Scan barcode sukses!'
+                    ], 200);
+                } else {
+                    $this->response([
+                        'status' => false,
+                        'message' => 'Scan barcode gagal!'
+                    ], 201);
+                }
             } else {
                 $this->response([
                     'status' => false,
-                    'message' => 'Scan barcode gagal!'
+                    'message' => 'Barcode sudah pernah discan!'
                 ], 201);
             }
         } else {
