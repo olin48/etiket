@@ -33,7 +33,7 @@
                             <?= $this->session->flashdata('message'); ?>
                             <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Tambah Tiket Event</button>
                     <br /><br /> -->
-                            <table id="dataBerita" class="table table-bordered table-striped">
+                            <table id="dataEvent" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>
@@ -104,7 +104,7 @@
                             <?= $this->session->flashdata('message'); ?>
                             <!-- <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Tambah Tiket Event</button>
                     <br /><br /> -->
-                            <table id="dataBerita" class="table table-bordered table-striped">
+                            <table id="dataPertandingan" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
                                         <th>#</th>

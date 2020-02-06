@@ -191,6 +191,22 @@
             "bInfo": true,
             "bAutoWidth": false
         });
+        $('#dataEvent').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
+        $('#dataPertandingan').dataTable({
+            "bPaginate": true,
+            "bLengthChange": true,
+            "bFilter": true,
+            "bSort": true,
+            "bInfo": true,
+            "bAutoWidth": false
+        });
     })(jQuery);
 
     //Animation Slider
