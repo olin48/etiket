@@ -208,12 +208,14 @@ class Tiket extends CI_Controller
         // $this->load->view('templates/js_kapasitas');
     }
 
-    public function update_status_bayar($id, $id_kapasitas, $qty_order, $kapasitas, $generateCode)
+    public function update_status_bayar($id, $id_kapasitas, $qty_order, $kapasitas, $tipe_tiket, $tanggal_event)
     {
         $this->tiket->edit_status_bayar($id);
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
+        var_dump($tanggal_event);
+        die;
         for ($i = 0; $i < $qty_order; $i++) {
-            $codeQR = $generateCode . '-' . random_string('numeric', 5);
+            $codeQR = $tipe_tiket . '-' . random_string('numeric', 5) . '/' . $tanggal_event;
             $this->generate_qr($id, $codeQR);
         }
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
