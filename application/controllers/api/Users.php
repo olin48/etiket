@@ -345,10 +345,28 @@ class Users extends CI_Controller
         }
     }
 
-    public function list_order_tiket_detail_get()
+    public function list_order_dtl_event_get()
     {
         $id_order = $this->get('id_order');
-        $source = $this->mob_users->getOrderTiketDetail($id_order);
+        $source = $this->mob_users->getOrderTiketDtlEvent($id_order);
+
+        if ($source) {
+            $this->response([
+                'status' => true,
+                'data' => $source
+            ], 200);
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'tidak ada data!'
+            ], 201);
+        }
+    }
+
+    public function list_order_dtl_pertandingan_get()
+    {
+        $id_order = $this->get('id_order');
+        $source = $this->mob_users->getOrderTiketDtlPertandingan($id_order);
 
         if ($source) {
             $this->response([
