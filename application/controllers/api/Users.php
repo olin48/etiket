@@ -392,7 +392,7 @@ class Users extends CI_Controller
                 if ($source) {
                     $this->response([
                         'status' => true,
-                        'data' => 'Scan barcode sukses!'
+                        'message' => 'Scan barcode sukses!'
                     ], 200);
                 } else {
                     $this->response([
