@@ -148,14 +148,12 @@ class Mobusers_model extends CI_Model
                          `mob_generate_qr`.`qr_code`,
                          `mob_generate_qr`.`qr_image`,
                          `mob_generate_qr`.`status_scan`,
-                         `mob_tiket_pertandingan`.`nama_pertandingan`,
-                         `mob_tiket_pertandingan`.`club_name_satu`,
-                         `mob_tiket_pertandingan`.`club_name_dua`
+                         `mob_tiket_event`.`nama_event`
                 FROM `mob_order_tiket` 
                 JOIN `mob_generate_qr` 
                 ON `mob_order_tiket`.`id` = `mob_generate_qr`.`id_order`
-                JOIN `mob_tiket_pertandingan`
-                ON `mob_order_tiket`.`id_tiket` = `mob_tiket_pertandingan`.`id`
+                JOIN `mob_tiket_event`
+                ON `mob_order_tiket`.`id_tiket` = `mob_tiket_event`.`id`
                 WHERE `mob_generate_qr`.`id_order` = $id_order";
         return $this->db->query($query)->result_array();
     }
