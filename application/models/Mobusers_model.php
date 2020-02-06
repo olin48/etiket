@@ -92,8 +92,28 @@ class Mobusers_model extends CI_Model
         return $this->db->query($query)->result_array();
     }
 
-    public function getOrderEvent()
+    public function getOrderEvent($id_user, $id_order)
     {
+        $query = "SELECT `mob_tiket_event`.`nama_event`,
+                          `mob_tiket_event`.`tanggal_event`, 
+                          `mob_tiket_event`.`waktu_event`,
+                          `mob_order_tiket`.`invoice_code`, 
+                          `mob_order_tiket`.`qty_order`, 
+                          `mob_kapasitas_tiket`.`id` AS `id_kapasitas`,
+                          `mob_kapasitas_tiket`.`tipe_tiket`, 
+                          `mob_kapasitas_tiket`.`harga`, 
+                          `mob_kapasitas_tiket`.`kapasitas`,
+                          `mob_order_tiket`.`id` AS `id_order`,
+                          `mob_order_tiket`.`total_bayar`, 
+                          `mob_order_tiket`.`payment_method`,
+                          `mob_order_tiket`.`status_order`
+                   FROM `mob_order_tiket` 
+                   JOIN `mob_tiket_event` 
+                   ON `mob_order_tiket`.`id_tiket` = `mob_tiket_event`.`id` 
+                   JOIN `mob_kapasitas_tiket` 
+                   ON `mob_order_tiket`.`id_kapasitas` = `mob_kapasitas_tiket`.`id`
+                   WHERE `mob_order_tiket`.`id_user` = '$id_user' AND `mob_order_tiket`.`id` = '$id_order'";
+        return $this->db->query($query)->result_array();
     }
 
     // public function getOrderTiket($id_user)
