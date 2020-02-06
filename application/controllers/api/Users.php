@@ -171,7 +171,7 @@ class Users extends CI_Controller
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'tidak ada data!'
+                'message' => 'Data tiket event tidak tersedia!'
             ], 201);
         }
     }
@@ -189,7 +189,7 @@ class Users extends CI_Controller
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'tidak ada data!'
+                'message' => 'Data tiket pertandingan tidak tersedia!'
             ], 201);
         }
     }
