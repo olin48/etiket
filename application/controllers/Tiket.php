@@ -212,8 +212,6 @@ class Tiket extends CI_Controller
     {
         $this->tiket->edit_status_bayar($id);
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
-        var_dump($tanggal_event);
-        die;
         for ($i = 0; $i < $qty_order; $i++) {
             $codeQR = $tipe_tiket . '-' . random_string('numeric', 5) . '/' . $tanggal_event;
             $this->generate_qr($id, $codeQR);
