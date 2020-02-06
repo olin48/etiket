@@ -68,6 +68,33 @@ class Tiket_model extends CI_Model
         $this->db->delete($table);
     }
 
+    function orderTiketEvent()
+    {
+        $query = "SELECT if(`kapasitas_tiket`.`jenis_tiket_cd` = 'TIKETEVN', 'Tiket Event', 'Tiket Event') AS jenis_tiket,
+        `kapasitas_tiket`.`tipe_tiket`,
+        `kapasitas_tiket`.`kapasitas`,
+        `mob_users`.`name`,
+        `order_tiket`.`id`,
+        `order_tiket`.`jenis_tiket`,
+        `order_tiket`.`invoice_code`,
+        `order_tiket`.`status_order`,
+        `order_tiket`.`qty_order`,
+        `order_tiket`.`total_bayar`,
+        `order_tiket`.`payment_method`,
+        `order_tiket`.`id_kapasitas`,
+        `event`.`tanggal_event`,
+        `event`.`waktu_event`
+        FROM `mob_kapasitas_tiket` AS `kapasitas_tiket`
+        JOIN `mob_order_tiket` AS `order_tiket`
+        ON `kapasitas_tiket`.`id` = `order_tiket`.`id_kapasitas`
+        JOIN `mob_users`
+        ON `order_tiket`.`id_user` = `mob_users`.`id`
+        JOIN `mob_tiket_event` AS `event`
+        ON `order_tiket`.`id_tiket` = `event`.`id` AND `order_tiket`.`jenis_tiket` = `event`.`jenis_tiket`
+        WHERE `order_tiket`.`status_order` = '1' OR `order_tiket`.`status_order` = '2' OR `order_tiket`.`status_order` = '3'";
+        return $this->db->query($query)->result_array();
+    }
+
     function orderTiketPertandingan()
     {
         $query = "SELECT if(`kapasitas_tiket`.`jenis_tiket_cd` = 'TIKETPTN', 'Tiket Pertandingan', 'Tiket Event') AS jenis_tiket,

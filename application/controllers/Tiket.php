@@ -195,9 +195,11 @@ class Tiket extends CI_Controller
         }
     }
 
-    public function order_tiket()
+    public function order_tiket($input = null)
     {
-        $data['order_tiket'] = $this->tiket->orderTiketPertandingan();
+        $data['order_tiket_pertandingan'] = $this->tiket->orderTiketPertandingan();
+        $data['order_tiket_event'] = $this->tiket->orderTiketEvent();
+        $data['tab'] = $input;
         $this->load->view('templates/header');
         $this->load->view('templates/sidebar');
         $this->load->view('templates/breadcumb');
