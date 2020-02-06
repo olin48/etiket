@@ -213,14 +213,15 @@ class Tiket extends CI_Controller
         $this->tiket->edit_status_bayar($id);
         $this->tiket->edit_quantity($id_kapasitas, $qty_order, $kapasitas);
         for ($i = 0; $i < $qty_order; $i++) {
+            $file_name = $tipe_tiket . '-' . random_string('numeric', 5);
             $codeQR = $tipe_tiket . '-' . random_string('numeric', 5) . '/' . $tanggal_event;
-            $this->generate_qr($id, $codeQR);
+            $this->generate_qr($id, $file_name, $codeQR);
         }
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Approve pembayaran sukses!</div>');
         redirect('tiket/order_tiket');
     }
 
-    function generate_qr($id_order, $codeQR)
+    function generate_qr($id_order, $file_name, $codeQR)
     {
         $this->load->library('ciqrcode'); //pemanggilan library QR CODE
 
@@ -234,7 +235,7 @@ class Tiket extends CI_Controller
         $config['white']        = array(70, 130, 180); // array, default is array(0,0,0)
         $this->ciqrcode->initialize($config);
 
-        $image_name = $codeQR . '.png'; //buat name dari qr code sesuai dengan nim
+        $image_name = $file_name . '.png'; //buat name dari qr code sesuai dengan nim
 
         $params['data'] = $codeQR; //data yang akan di jadikan QR CODE
         $params['level'] = 'H'; //H=High
