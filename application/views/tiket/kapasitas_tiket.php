@@ -44,10 +44,10 @@
                                     <td width="10%"><?= $k['kapasitas']; ?></td>
                                     <td width="10%"><?= $k['harga']; ?></td>
                                     <?php if ($k['is_active'] == 0) {
-                                            echo "<td align='center' width='5%'><span class='label label-danger'>Non Active</span></td>";
-                                        } else if ($k['is_active'] == 1) {
-                                            echo "<td align='center' width='5%'><span class='label label-success'>Active</span></td>";
-                                        } ?>
+                                        echo "<td align='center' width='5%'><span class='label label-danger'>Non Active</span></td>";
+                                    } else if ($k['is_active'] == 1) {
+                                        echo "<td align='center' width='5%'><span class='label label-success'>Active</span></td>";
+                                    } ?>
                                     <td align="center" width="8%">
                                         <button class="btn-link d-edit" data-toggle="modal" data-target="#modal_edit_kapasitas_<?= $k['id']; ?>" title="Edit">
                                             <i class="fa fa-edit" style="color:green"></i>
@@ -153,8 +153,8 @@
                         <h4 class="modal-title">Edit Kapasitas & Harga Tiket</h4>
                     </div>
                     <?php
-                        echo form_open_multipart('tiket/edit_kapasitas');
-                        ?>
+                    echo form_open_multipart('tiket/edit_kapasitas');
+                    ?>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="usr">Jenis Tiket :</label>
@@ -162,11 +162,11 @@
                             <select name="jenis_tiket_<?= $k['id']; ?>" id="jenis_tiket_<?= $k['id']; ?>" class="form-control" required>
                                 <option value="">Pilih Jenis Tiket</option>
                                 <option <?php if ($k['jenis_tiket_cd'] == "TIKETEVN") {
-                                                echo "selected=selected";
-                                            } ?> value="TIKETEVN">Tiket Event</option>
+                                            echo "selected=selected";
+                                        } ?> value="TIKETEVN">Tiket Event</option>
                                 <option <?php if ($k['jenis_tiket_cd'] == "TIKETPTN") {
-                                                echo "selected=selected";
-                                            } ?> value="TIKETPTN">Tiket Pertandingan</option>
+                                            echo "selected=selected";
+                                        } ?> value="TIKETPTN">Tiket Pertandingan</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -175,8 +175,8 @@
                                 <option value="">Pilih Kegiatan</option>
                                 <?php foreach ($event as $e) : ?>
                                     <option <?php if ($k['id_tiket'] == $e['id']) {
-                                                        echo "selected=selected";
-                                                    } ?> value="<?= $e['id']; ?>"><?= $e['nama_event']; ?></option>
+                                                echo "selected=selected";
+                                            } ?> value="<?= $e['id']; ?>"><?= $e['nama_event']; ?></option>
                                 <?php endforeach; ?>
                             </select>
                             <select name="id_tiket_pertandingan_<?= $k['id']; ?>" id="id_tiket_pertandingan_<?= $k['id']; ?>" class="form-control">
@@ -191,20 +191,20 @@
                             <select name="tipe_tiket" id="tipe_tiket" class="form-control" required>
                                 <option value="">Pilih Tipe Tiket</option>
                                 <option <?php if ($k['tipe_tiket'] == "VVIP") {
-                                                echo "selected=selected";
-                                            } ?> value="VVIP">VVIP</option>
+                                            echo "selected=selected";
+                                        } ?> value="VVIP">VVIP</option>
                                 <option <?php if ($k['tipe_tiket'] == "VIP") {
-                                                echo "selected=selected";
-                                            } ?> value="VIP">VIP</option>
+                                            echo "selected=selected";
+                                        } ?> value="VIP">VIP</option>
                                 <option <?php if ($k['tipe_tiket'] == "Tribune Timur") {
-                                                echo "selected=selected";
-                                            } ?> value="Tribune Timur">Tribune Timur</option>
+                                            echo "selected=selected";
+                                        } ?> value="Tribune Timur">Tribune Timur</option>
                                 <option <?php if ($k['tipe_tiket'] == "Tribune Utara") {
-                                                echo "selected=selected";
-                                            } ?> value="Tribune Utara">Tribune Utara</option>
+                                            echo "selected=selected";
+                                        } ?> value="Tribune Utara">Tribune Utara</option>
                                 <option <?php if ($k['tipe_tiket'] == "Tribune Selatan") {
-                                                echo "selected=selected";
-                                            } ?> value="Tribune Selatan">Tribune Selatan</option>
+                                            echo "selected=selected";
+                                        } ?> value="Tribune Selatan">Tribune Selatan</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -220,11 +220,11 @@
                             <select name="status_id" id="status_id" class="form-control" required>
                                 <option value="">Pilih Status</option>
                                 <option <?php if ($k['is_active'] == 0) {
-                                                echo "selected=selected";
-                                            } ?> value="0">Non Active</option>
+                                            echo "selected=selected";
+                                        } ?> value="0">Non Active</option>
                                 <option <?php if ($k['is_active'] == 1) {
-                                                echo "selected=selected";
-                                            } ?> value="1">Active</option>
+                                            echo "selected=selected";
+                                        } ?> value="1">Active</option>
                             </select>
                         </div>
                     </div>
@@ -235,10 +235,9 @@
                     <?php echo form_close(); ?>
                 </div>
             </div>
-        <?php } ?>
-
         </div>
-        <!-- #/paper bg -->
+    <?php } ?>
+    <!-- #/paper bg -->
 </div>
 <!-- ./wrap-sidebar-content -->
 
