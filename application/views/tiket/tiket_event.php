@@ -48,12 +48,12 @@
                                     <td width="10%"><?= $me['tanggal_event']; ?></td>
                                     <td width="10%"><?= $me['waktu_event']; ?></td>
                                     <?php if ($me['is_active'] == 0) {
-                                            echo "<td align='center'><span class='label label-danger'>Non Active</span></td>";
-                                        } else if ($me['is_active'] == 1) {
-                                            echo "<td align='center'><span class='label label-success'>Active</span></td>";
-                                        } else if ($me['is_active'] == 2) {
-                                            echo "<td align='center'><span class='label label-warning'>Expired</span></td>";
-                                        } ?>
+                                        echo "<td align='center'><span class='label label-danger'>Non Active</span></td>";
+                                    } else if ($me['is_active'] == 1) {
+                                        echo "<td align='center'><span class='label label-success'>Active</span></td>";
+                                    } else if ($me['is_active'] == 2) {
+                                        echo "<td align='center'><span class='label label-warning'>Expired</span></td>";
+                                    } ?>
                                     <td align="center" width="8%">
                                         <button class="btn-link d-edit" data-toggle="modal" data-target="#modal_edit_event_<?= $me['id']; ?>" title="Edit">
                                             <i class="fa fa-edit" style="color:green"></i>
@@ -164,8 +164,8 @@
                         <h4 class="modal-title">Edit Tiket Event</h4>
                     </div>
                     <?php
-                        echo form_open_multipart('tiket/edit_tiket_event');
-                        ?>
+                    echo form_open_multipart('tiket/edit_tiket_event');
+                    ?>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="usr">Nama Event :</label>
@@ -224,11 +224,11 @@
                             <select name="status_id" id="status_id" class="form-control" required>
                                 <option value="">Pilih Status</option>
                                 <option <?php if ($me['is_active'] == 0) {
-                                                echo "selected=selected";
-                                            } ?> value="0">Non Active</option>
+                                            echo "selected=selected";
+                                        } ?> value="0">Non Active</option>
                                 <option <?php if ($me['is_active'] == 1) {
-                                                echo "selected=selected";
-                                            } ?> value="1">Active</option>
+                                            echo "selected=selected";
+                                        } ?> value="1">Active</option>
                             </select>
                         </div>
                     </div>
@@ -239,10 +239,9 @@
                     <?php echo form_close(); ?>
                 </div>
             </div>
-        <?php } ?>
-
         </div>
-        <!-- #/paper bg -->
+    <?php } ?>
+    <!-- #/paper bg -->
 </div>
 <!-- ./wrap-sidebar-content -->
 

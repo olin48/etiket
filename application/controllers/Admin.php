@@ -80,4 +80,70 @@ class Admin extends CI_Controller
 		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data users sukses!</div>');
 		redirect('dev/users');
 	}
+
+	public function admin_mobile()
+	{
+		$this->form_validation->set_rules('name', 'Name', 'required|trim');
+		$this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email');
+		$data['cms_admin'] = $this->view_users_model->admin_mobile_data()->result_array();
+
+		if ($this->form_validation->run() == false) {
+			$this->load->view('templates/header');
+			$this->load->view('templates/sidebar');
+			$this->load->view('templates/breadcumb');
+			$this->load->view('users/admin_mobile', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$data = [
+				'name' => $this->input->post('name'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				'phone' => $this->input->post('phone'),
+				'is_active' => $this->input->post('status_id'),
+				'register_date' => time()
+			];
+
+			$this->db->insert('mob_admins', $data);
+			redirect('admin/admin_mobile');
+		}
+	}
+
+	public function edit_admin_mobile($id)
+	{
+		$where = ['id' => $id];
+		$data = "";
+		if ($this->input->post('password1') != null) {
+			$data = [
+				'name' => $this->input->post('name'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+				'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+				'phone' => $this->input->post('phone'),
+				'is_active' => $this->input->post('status_id'),
+				'register_date' => time()
+			];
+		} else {
+			$data = [
+				'name' => $this->input->post('name'),
+				'username' => $this->input->post('username'),
+				'email' => $this->input->post('email'),
+				'phone' => $this->input->post('phone'),
+				'is_active' => $this->input->post('status_id'),
+				'register_date' => time()
+			];
+		}
+
+		$this->view_users_model->edit_mob_admin($where, $data, 'mob_admins');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Perubahan data admin mobile sukses!</div>');
+		redirect('admin/admin_mobile');
+	}
+
+	public function delete_mob_admin($id)
+	{
+		$where = array('id' => $id);
+		$this->view_users_model->delete_mob_admin($where, 'mob_admins');
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Hapus data admin mobile sukses!</div>');
+		redirect('admin/admin_mobile');
+	}
 }
