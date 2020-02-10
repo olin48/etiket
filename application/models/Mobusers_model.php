@@ -17,15 +17,15 @@ class Mobusers_model extends CI_Model
 
     public function getBeritaSlide()
     {
-        $this->db->order_by("id", "ASC");
-        $query = $this->db->get($this, 'mob_berita', 5)->result_array();
+        $this->db->order_by("id desc");
+        $query = $this->db->get('mob_berita', 5)->result_array();
         return $query;
     }
 
     public function getBerita()
     {
-        $this->db->order_by("id", "ASC");
-        $query = $this->db->get($this, 'mob_berita')->result_array();
+        $this->db->order_by("id desc");
+        $query = $this->db->get('mob_berita')->result_array();
         return $query;
     }
 
