@@ -36,7 +36,7 @@ class Mobusers_model extends CI_Model
 
     public function getTiketEventDetail($id)
     {
-        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETEVN", 'id_tiket' => $id))->result_array();
+        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETEVN", 'id_tiket' => $id, 'is_active' => "1"))->result_array();
     }
 
     public function getTiketPertandingan()
@@ -46,7 +46,7 @@ class Mobusers_model extends CI_Model
 
     public function getTiketPertandinganDetail($id)
     {
-        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETPTN", 'id_tiket' => $id))->result_array();
+        return $this->db->get_where('mob_kapasitas_tiket', array('jenis_tiket_cd' => "TIKETPTN", 'id_tiket' => $id, 'is_active' => "1"))->result_array();
     }
 
     public function orderTiket($data)
