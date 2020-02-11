@@ -31,40 +31,69 @@ class Users extends CI_Controller
 
     public function register_post()
     {
-        $data = [
-            'name' => $this->post('name'),
-            'username' => $this->post('username'),
-            'email' => $this->post('email'),
-            'password' => password_hash($this->post('password'), PASSWORD_DEFAULT),
-            'phone' => $this->post('phone'),
-            'is_active' => 1
-        ];
+        $name = $this->post('name');
+        $username = $this->post('username');
+        $email = $this->post('email');
+        $password = password_hash($this->post('password'), PASSWORD_DEFAULT);
+        $phone = $this->post('phone');
+        if ($name && $username && $email && $password && $phone != null) {
+            $data = [
+                'name' => $name,
+                'username' => $username,
+                'email' => $email,
+                'password' => $password,
+                'phone' => $phone,
+                'is_active' => 1
+            ];
 
-        $check = $this->db->get_where(
-            'mob_users',
-            array(
-                'username' => $this->post('username'),
-                'email' => $this->post('email'),
-                'phone' => $this->post('phone')
-            )
-        )->result_array();
-
-        if ($check == null) {
-            if ($this->mob_users->registerUsers($data) > 0) {
-                $this->response([
-                    'status' => true,
-                    'message' => 'Registrasi berhasil, Silahkan login'
-                ], 200);
+            $check = $this->db->get_where('mob_users', array('username' => $this->post('username'), 'email' => $this->post('email'), 'phone' => $this->post('phone')))->result_array();
+            if ($check == null) {
+                if ($this->mob_users->registerUsers($data) > 0) {
+                    $this->response([
+                        'status' => true,
+                        'message' => 'Registrasi berhasil, Silahkan login.'
+                    ], 200);
+                } else {
+                    $this->response([
+                        'status' => false,
+                        'message' => 'Gagal'
+                    ], 201);
+                }
             } else {
                 $this->response([
                     'status' => false,
-                    'message' => 'Gagal'
+                    'message' => 'Gagal! User sudah tersedia, silahkan login.'
                 ], 201);
             }
+        } else if ($name == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Nama wajib diisi.'
+            ], 201);
+        } else if ($username == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Username wajib diisi.'
+            ], 201);
+        } else if ($email == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Email wajib diisi.'
+            ], 201);
+        } else if ($password == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Password wajib diisi.'
+            ], 201);
+        } else if ($phone == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Phone wajib diisi.'
+            ], 201);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'Gagal! User sudah tersedia, silahkan login.'
+                'message' => 'Name, Username, Email, Password & Phone wajib diisi.'
             ], 201);
         }
     }
@@ -73,26 +102,42 @@ class Users extends CI_Controller
     {
         $username = $this->post('username');
         $password = $this->post('password');
+        if ($username && $password != null) {
+            $user = $this->db->get_where('mob_users', ['username' => $username])->row_array();
 
-        $user = $this->db->get_where('mob_users', ['username' => $username])->row_array();
-
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $data = $this->db->get_where('mob_users', array('username' => $username))->result_array();
-                $this->response([
-                    'status' => true,
-                    'data' => $data
-                ], 200);
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    $data = $this->db->get_where('mob_users', array('username' => $username))->result_array();
+                    $this->response([
+                        'status' => true,
+                        'data' => $data
+                    ], 200);
+                } else {
+                    $this->response([
+                        'status' => false,
+                        'message' => 'Password salah!'
+                    ], 201);
+                }
             } else {
                 $this->response([
                     'status' => false,
-                    'message' => 'Password salah!'
+                    'message' => 'User tidak tersedia'
                 ], 201);
             }
+        } else if ($username == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Username wajib diisi.'
+            ], 201);
+        } else if ($password == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Password wajib diisi.'
+            ], 201);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'User tidak ada'
+                'message' => 'Username & Password wajib diisi.'
             ], 201);
         }
     }
@@ -102,25 +147,41 @@ class Users extends CI_Controller
         $username = $this->post('username');
         $password = $this->post('password');
 
-        $user = $this->db->get_where('mob_admins', ['username' => $username])->row_array();
-
-        if ($user) {
-            if (password_verify($password, $user['password'])) {
-                $data = $this->db->get_where('mob_admins', array('username' => $username))->result_array();
-                $this->response([
-                    'status' => true,
-                    'data' => $data
-                ], 200);
+        if ($username && $password != null) {
+            $user = $this->db->get_where('mob_admins', ['username' => $username])->row_array();
+            if ($user) {
+                if (password_verify($password, $user['password'])) {
+                    $data = $this->db->get_where('mob_admins', array('username' => $username))->result_array();
+                    $this->response([
+                        'status' => true,
+                        'data' => $data
+                    ], 200);
+                } else {
+                    $this->response([
+                        'status' => false,
+                        'message' => 'Password salah!'
+                    ], 201);
+                }
             } else {
                 $this->response([
                     'status' => false,
-                    'message' => 'Password salah!'
+                    'message' => 'User tidak ada'
                 ], 201);
             }
+        } else if ($username == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Username wajib diisi.'
+            ], 201);
+        } else if ($password == null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Password wajib diisi.'
+            ], 201);
         } else {
             $this->response([
                 'status' => false,
-                'message' => 'User tidak ada'
+                'message' => 'Username & Password wajib diisi.'
             ], 201);
         }
     }
