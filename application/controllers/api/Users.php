@@ -65,7 +65,14 @@ class Users extends CI_Controller
                     'message' => 'Gagal! User sudah tersedia, silahkan login.'
                 ], 201);
             }
-        } else if ($name == null) {
+        } else {
+            $this->response([
+                'status' => false,
+                'message' => 'Name, Username, Email, Password & Phone wajib diisi.'
+            ], 201);
+        }
+
+        if ($name == null) {
             $this->response([
                 'status' => false,
                 'message' => 'Nama wajib diisi.'
@@ -89,11 +96,6 @@ class Users extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Phone wajib diisi.'
-            ], 201);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'Name, Username, Email, Password & Phone wajib diisi.'
             ], 201);
         }
     }
@@ -124,6 +126,11 @@ class Users extends CI_Controller
                     'message' => 'User tidak tersedia'
                 ], 201);
             }
+        } else if ($username && $password != null) {
+            $this->response([
+                'status' => false,
+                'message' => 'Username & Password wajib diisi.'
+            ], 201);
         } else if ($username == null) {
             $this->response([
                 'status' => false,
@@ -133,11 +140,6 @@ class Users extends CI_Controller
             $this->response([
                 'status' => false,
                 'message' => 'Password wajib diisi.'
-            ], 201);
-        } else {
-            $this->response([
-                'status' => false,
-                'message' => 'Username & Password wajib diisi.'
             ], 201);
         }
     }
