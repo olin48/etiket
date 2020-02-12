@@ -235,7 +235,7 @@ class Tiket extends CI_Controller
         $config['white']        = array(70, 130, 180); // array, default is array(0,0,0)
         $this->ciqrcode->initialize($config);
 
-        $image_name = $file_name . '.png'; //buat name dari qr code sesuai dengan nim
+        $image_name = str_replace('%20', '', $file_name) . '.png'; //buat name dari qr code sesuai dengan nim
 
         $params['data'] = $codeQR; //data yang akan di jadikan QR CODE
         $params['level'] = 'H'; //H=High
