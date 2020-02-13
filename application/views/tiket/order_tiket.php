@@ -72,7 +72,7 @@
                                                 echo "<td align='center'><span class='label label-danger'>Dibatalkan</span></td>";
                                             } ?>
                                             <td align="center" width="8%">
-                                                <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $ote['id'] . '/' . $ote['id_kapasitas'] . '/' . $ote['qty_order'] . '/' . $ote['kapasitas'] . '/' . $ote['tipe_tiket'] . '/' . $ote['tanggal_event']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
+                                                <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $ote['id'] . '/' . $ote['id_kapasitas'] . '/' . $ote['qty_order'] . '/' . $ote['kapasitas'] . '/' . $ote['tipe_tiket'] . '/' . $ote['tanggal_event'] . '/' . $ote['waktu_event']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
                                                     <?php if ($ote['status_order'] == 1) {
                                                         echo "<i class='fa fa-check' style='color:green'></i>";
                                                     } else if ($ote['status_order'] == 3) {
@@ -143,7 +143,7 @@
                                                 echo "<td align='center'><span class='label label-danger'>Dibatalkan</span></td>";
                                             } ?>
                                             <td align="center" width="8%">
-                                                <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $otp['id'] . '/' . $otp['id_kapasitas'] . '/' . $otp['qty_order'] . '/' . $otp['kapasitas'] . '/' . $otp['tipe_tiket'] . '/' . $otp['tgl_tanding']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
+                                                <a title="Approve" href="<?= base_url('tiket/update_status_bayar/' . $otp['id'] . '/' . $otp['id_kapasitas'] . '/' . $otp['qty_order'] . '/' . $otp['kapasitas'] . '/' . $otp['tipe_tiket'] . '/' . $otp['tgl_tanding'] . '/' . $otp['jam_tanding']); ?>" onclick="return confirm('Anda yakin ingin menyetujui data ini?')" type="button" class="btn-link d-delete">
                                                     <?php if ($otp['status_order'] == 1) {
                                                         echo "<i class='fa fa-check' style='color:green'></i>";
                                                     } else if ($otp['status_order'] == 3) {
